@@ -7,9 +7,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
  * @author liuyong
- * @version 1.0
- * @Description: escrow center
- * @Createdate 2021/9/14 4:57 下午
  */
 @SpringBootApplication(exclude = DruidDataSourceAutoConfigure.class)
 @MapperScan(basePackages = {"org.whitefat.unmanned.mapper"})
