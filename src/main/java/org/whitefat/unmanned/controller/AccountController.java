@@ -5,6 +5,10 @@ import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.whitefat.unmanned.service.AccountService;
+
+import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * @author liuyong
@@ -17,11 +21,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController("/accounts")
 public class AccountController {
 
+    @Resource
+    private AccountService accountService;
 
     @ApiOperation(value = "查询账户")
     @GetMapping
-    public Object listAccounts() {
-        return "123123131231231231";
+    public List listAccounts() {
+        return accountService.listAccounts();
     }
 
 

@@ -177,4 +177,76 @@
         </dependencies>
     </dependencyManagement>
 
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${spring-boot.version}</version>
+                <configuration>
+                    <mainClass>org.whitefat.unmanned.UnmannedApplication</mainClass>
+                    <skip>true</skip>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>repackage</id>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.web3j</groupId>
+                <artifactId>web3j-maven-plugin</artifactId>
+                <version>4.9.4</version>
+                <configuration>
+                    <packageName>org.whitefat.unmanned</packageName>
+                    <sourceDestination>src/main/java/generated</sourceDestination>
+                    <nativeJavaType>true</nativeJavaType>
+                    <outputFormat>java,bin</outputFormat>
+                    <soliditySourceFiles>
+                        <directory>src/main/resources</directory>
+                        <includes>
+                            <include>**/*.sol</include>
+                        </includes>
+                    </soliditySourceFiles>
+                    <abiSourceFiles>
+                        <directory>src/main/resources</directory>
+                        <includes>
+                            <include>**/*.json</include>
+                        </includes>
+                    </abiSourceFiles>
+                    <outputDirectory>
+                        <java>src/java/generated</java>
+                        <bin>src/bin/generated</bin>
+                        <abi>src/abi/generated</abi>
+                    </outputDirectory>
+                    <contract>
+                        <includes>
+                            <include>greeter</include>
+                        </includes>
+                        <excludes>
+                            <exclude>mortal</exclude>
+                        </excludes>
+                    </contract>
+                    <pathPrefixes>
+                        <pathPrefix>dep=../dependencies</pathPrefix>
+                    </pathPrefixes>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
 </project>
