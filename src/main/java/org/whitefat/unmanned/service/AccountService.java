@@ -18,4 +18,11 @@ public interface AccountService {
      */
     List listAccounts();
 
+    /**
+     * 创建账户
+     *
+     * @param type
+     */
+    void createAccount(Integer type);
+
 }
